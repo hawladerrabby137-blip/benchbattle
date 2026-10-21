@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Bench Battle</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#8A5A3B">
+<link rel="icon" href="icon-192.png">
 <style>
 :root{--paper:#F4E8D0;--wood:#8A5A3B;--ink:#252B35;--chalk:#FFFDF5;--blue:#779DB7;--red:#C65D4B;--gold:#E8B65A;--card:#FFFDF5;--line:rgba(119,157,183,.38);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#2D2923;--ink:#F4E8D0;--card:#3A342B;--line:rgba(119,157,183,.22)}}
@@ -248,6 +251,7 @@ function loop(ts){requestAnimationFrame(loop);const dt=Math.min(.033,(ts-last)/1
 function resize(){dpr=Math.min(3,devicePixelRatio||1);cv.width=innerWidth*dpr;cv.height=innerHeight*dpr;s=Math.min(innerWidth/360,innerHeight/640);ox=(innerWidth-360*s)/2;oy=(innerHeight-640*s)/2;$('hud').style.transform=`translate(${ox}px,${oy}px) scale(${s})`}
 addEventListener('resize',resize);
 try{resize();applyLang();mkPens();requestAnimationFrame(loop)}catch(err){document.body.insertAdjacentHTML('beforeend','<pre style="position:absolute;z-index:99;padding:20px;white-space:pre-wrap">'+err+'</pre>')}
+if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}
 </script>
 </body>
 </html>
